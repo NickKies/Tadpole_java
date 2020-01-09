@@ -1,0 +1,56 @@
+크롤링
+
+정보들을 분석하기 쉽고 활용하기 편하도록 데이터를 수집하는 행위를 크롤링이라고 합니다. 크롤링 하는 프로그램을 크롤러라고 부릅니다. 크롤링의 정확한 정의는 다양한 웹사이트의 페이지를 브라우징하는 작업을 뜻합니다. 페이지 안에 있는 데이터를 추출해서 가공하는게 최종 목표입니다.
+
+
+크롤링의 원리 
+
+html 문서 
+(html + css + javascript)
+
+문서 선택방법
+
+- 필요한 요소 찾기
+getElementById(String id) : id로 찾은 element 객체를 반환합니다. 없으면 null을 반환합니다.
+getElementByTag(String tag) : Tag로 찾은 element 객체를 반환합니다. 없으면 size()가 0입니다.
+getElementByClass(String class): Class로 찾은 Element 객체를 반환합니다. 없으면 size()가 0입니다.
+
+-Element 객체가 할 수 있는 일
+attr(String key) : 속성의 값을 얻어옵니다.
+id() : id의 값을 얻어옵니다.
+className() : class속성의 값을 얻어옵니다.
+(단, class="center red" 값으로 2개 이상의 값이 있다면 classNames()를 사용합니다.)
+text() : 순수 텍스트의 값만 얻어옵니다.
+html() : html 문자열을 얻어옵니다.
+outerHtml() : 요소의 outer html을 반환합니다.
+
+<div>반가워요<div id="test"><b>안녕하세요</b></div></div>
+
+- CSS스타일로 요소 선택하기
+doc.select("a") : <a>요소를 모두 선택합니다.
+doc.select("#logo:) : id="logo"인 요소를 선택합니다.
+doc.select(".head") : class="head"인 요소를 모두 선택합니다.
+doc.select("[href]") : href 속성을 가진 요소들을 모두 선택합니다.
+doc.select("[width=500"]") : width속성의 값이 500인 모든 요소를 선택합니다.
+
+Elements element =doc.select("div").select(".head").select("[width=500"]");
+
+
+네이버 영화 평점 사이트 크롤링
+
+https://movie.naver.com/movie/point/af/list.nhn?&page=1
+https://movie.naver.com/movie/point/af/list.nhn?&page=2
+https://movie.naver.com/movie/point/af/list.nhn?&page=3
+
+평점, 영화제목, 영화평
+
+
+
+
+
+
+
+<input type="text" id="name" class="name" name="name">
+
+doc.getElementById(name)
+

@@ -1,0 +1,24 @@
+미디어 쿼리(media query)
+CSS3에서는 @media규칙을 CSS2보다 발전시켜 매체 유형과 하나 이상의 표현식으로 구성된 미디어 쿼리를 사용할 수 있습니다. 미디어 쿼리는 width, height, color 속성과 같은 미디어 관련 속성을 이용한 표현식을 통해 스탕ㄹ이 적용되는 범위를 조절할 수 있습니다. 미디어 쿼리를 사용하면 콘텣를 별도로 변경하지 않아도 웹 페이지에 접속하고 있는 기기에 알맞은 형태로 스타일이 조정됩니다.
+
+문법
+@media only|not 매체유형 and(표현식) { CSS스타일코드; }
+
+매체유형
+all         모든 매체에 사용함.	
+print     프린터 기기에 사용함.
+screen   컴퓨터나 태블릿, 스마트폰 등 스크린이 있는 매체에 사용함.
+speech  웹 페이지를 읽어주는 스크린 리더(screenreader)에 사용함.
+
+
+CSS3 미디어 쿼리 속성
+width                 화면의 너비
+height                화면의 높이
+device-width        매체 화면의 너비
+device-height       매체 화면의 높이
+device-aspet-ratio 매체 화면의 비율
+orientation          매체 화면의 방향
+color                  매체의 색상 비트 수
+color-index          매체에서 표현 가능한 색상의 개수
+monochrome       흑백 매체에서의 픽셀당 비트 수
+resolution            매체의 해상도

@@ -1,0 +1,97 @@
+타입(data type)
+
+숫자 타입
+- 정수 타입
+tinyint		-128 ~ 127
+smallint	-32768 ~ -32767
+mediumint	-8388608 ~ 8388607
+int		-2147483648 ~ 2147483647
+bigint		-9223372036854775808 ~ 9223372036854775807
+
+- 고정 소수점 타입
+DECIMAL(M, D)
+M : 소수 부분을 포함한 실수의 총 자리수. 최댓값은 65
+D : 소수 부분의 자릿수를 나타내며, D가 0이면 소수부분을 가지지 않습니다.
+예) DECIMAL(7, 2) -> 12345.67
+
+- 부동 소수점 타입
+FLOAT(P)
+P : 0부터 24까지의 값을 가질 때는 FLOAT값으로 취급되며, 25부터 53까지 값을 가질 때는 DOUBLE값으로 취급됩니다. 
+
+
+문자 타입
+
+char : 문자열을 길이가 한 번 설정되면 그대로 고정되는 고정 길이의 문자열로 다룹니다.(0~255byte)
+varchar : 문자열을 길이가 고정되지 않는 가변 길이의 문자열로 다룹니다. (0~65535byte)
+
+create table member (
+	userid varchar(20),
+	...
+	zipcode char(5),
+	...
+
+BLOB : Binary Large Object를 의미하며, 다양한 크기의 바이너리 데이터를 저장할 수 있는 타입입니다.
+TEXT : VARCHAR와 비슷하지만, VARCHAR와는 달리 기본값을 가질 수 없습니다. 또한, TEXT는 BLOB과도 비슷하지만, BLOB과는 달리 문자열의 대소문자를 구분합니다.
+
+ENUM : 미리 정의한 집합 안의 요소 중 하나만을 저장할 수 있는 타입입니다.
+예) enum('남자', '여자')
+
+
+날짜 타입
+
+DATE : 날짜를 저장할 수 있는 타입입니다. 기본 형식은 'YYYY-MM-DD'이며, 이때 저장할 수 있는 날짜의 범위는 '1000-01-01'부터 '9999-12-31'까지입니다.
+DATETIME : 날짜와 함께 시간까지 저장할 수 있는 타입입니다. 기본 형식은 'YYYY-MM-DD HH:MM:SS'이며, 이때 저장할 수 있는 범위는 '1000-01-01 00:00:00'부터 '9999-12-31 23:59:59'까지입니다.
+TIMESTAMP : 날짜와 시간을 나타내는 타임스탬프를 저장할 수 있는 타입입니다. TIMESTAMP 타입의 필드는 사용자가 별다른 입력을 주지 않으면, 데이터가 마지막으로 입력되거나 변경된 시간이 저장됩니다. 저장할 수 있는 범위는 '1970-01-01 00:00:01' UTC부터 '2038-01-19 03:14:07' UTC까지입니다.
+
+제약 조건
+데이터의 무결성을 지키기 위해, 데이터를 입력 받을 때 실행되는 검사 규칙을 의미합니다.
+
+1. NOT NULL
+NOT NULL 제약 조건을 설정하면, 해당 필드는 NULL 값을 저장할 수 없습니다.
+
+2. UNIQUE
+해당 필드는 서로 다른 값을 가져야 합니다. 이 제약 조건이 설정된 필드는 중복된 값을 저장할 수 없습니다.
+
+3. PRIMARY KEY
+해당 필드는 NOT NULL과 UNIQUE 제약 조건의 특징을 모두 가집니다. 이 제약 조건이 설정된 필드는 NULL 값을 가질 수 없으며, 또한 중복된 값을 가져서도 안 됩니다.
+
+4. FOREIGN KEY
+한 테이블을 다른 테이블과 연결해주는 역할을 합니다. 외래 키가 설정된 테이블에 레코드를 입력하면, 기준이 되는 테이블의 내용을 참조해서 레코드가 입력됩니다. 즉, FOREIGN KEY 제약 조건은 하나의 테이블을 다른 테이블에 의존하게 만듭니다.
+
+5. DEFAULT
+해당 필드의 기본값을 설정할 수 있게 해줍니다. 만약 레코드를 입력할 때 해당 필드 값을 전달하지 않으면, 자동으로 설정된 기본값을 저장합니다.
+
+
+create table member (
+	idx	int auto_increment primary key,
+	user_id varchar(20) unique not null,
+	pass	varchar(20) not null,
+	name	varchar(20) not null,
+	email	varchar(50),
+	gender	enum('남자', '여자'),
+	zipcode char(5) not null,
+	address1 varchar(200) not null,
+	address2 varchar(200) not null,
+	address3 varchar(200) not null,
+	point int default 0,
+	registdate datetime default now()
+)
+
+데이터 삽입(insert)
+
+1.
+insert into 테이블이름(필드이름1, 필드이름2 ...) values (값1, 값2, ...)
+예)
+insert into member(user_id, pass, name, email, gender, zipcode, address1, address2, address3, point, registdate) values ('apple', '1111', '김사과', 'apple@apple.com', '여자', '12345', '서울 서초구 방배동', '111-12', 'xx아파트', 100, '2019-08-01')
+
+insert into member(user_id, pass, name, gender, zipcode, address1, address2, address3, point, registdate) values ('banana', '2222', '반하나', '여자', '98765', '서울 서초구 서초동', '222-22', 'xx', 200, '2019-08-01')
+
+insert into member(user_id, pass, name, gender, zipcode, address1, address2, address3, registdate) values ('orange', '3333', '오렌지', '남자', '12121', '서울 서초구 양재동', '123-22', 'xx연립', '2019-08-01')
+
+insert into member(user_id, pass, name, gender, zipcode, address1, address2, address3) values ('melon', '4444', '박멜론', '남자', '33322', '서울 강남구 역삼동', '333-12', 'oo아파트')
+
+
+
+2. 
+insert into 테이블이름 values (값1, 값2, ...)
+

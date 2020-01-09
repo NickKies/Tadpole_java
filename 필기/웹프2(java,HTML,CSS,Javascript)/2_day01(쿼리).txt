@@ -1,0 +1,27 @@
+테이블 만들기
+
+create table member (
+	idx	int auto_increment primary key,
+	user_id varchar(20) unique not null,
+	pass	varchar(20) not null,
+	name	varchar(20) not null,
+	email	varchar(50),
+	gender	enum('남자', '여자'),
+	zipcode char(5) not null,
+	address1 varchar(200) not null,
+	address2 varchar(200) not null,
+	address3 varchar(200) not null,
+	point int default 0,
+	registdate datetime default now()
+)
+
+데이터삽입
+
+insert into member(user_id, pass, name, email, gender, zipcode, address1, address2, address3, point, registdate) values ('apple', '1111', '김사과', 'apple@apple.com', '여자', '12345', '서울 서초구 방배동', '111-12', 'xx아파트', 100, '2019-08-01')
+
+insert into member(user_id, pass, name, gender, zipcode, address1, address2, address3, point, registdate) values ('banana', '2222', '반하나', '여자', '98765', '서울 서초구 서초동', '222-22', 'xx', 200, '2019-08-01')
+
+insert into member(user_id, pass, name, gender, zipcode, address1, address2, address3, registdate) values ('orange', '3333', '오렌지', '남자', '12121', '서울 서초구 양재동', '123-22', 'xx연립', '2019-08-01')
+
+insert into member(user_id, pass, name, gender, zipcode, address1, address2, address3) values ('melon', '4444', '박멜론', '남자', '33322', '서울 강남구 역삼동', '333-12', 'oo아파트')
+

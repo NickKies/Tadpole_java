@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Jsoup&apos; to &apos;Jsoup2&apos;&#x0D;&#x0A;- Original project: &apos;helloNewDay2_20(JSOUP)&apos;&#x0D;&#x0A;- Original element: &apos;Jsoup&apos;&#x0D;&#x0A;- Renamed element: &apos;Jsoup2&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Jsoup&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{Jsoup.java[Jsoup" matchStrategy="1" name="Jsoup2" qualified="false" references="true" similarDeclarations="false" stamp="1567660534269" textual="false" version="1.0"/>
+</session>

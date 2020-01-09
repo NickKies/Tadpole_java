@@ -1,0 +1,66 @@
+Expression Language
+
+1. EL(Expression Langeuge)
+	- JSP에서 값을 표현하는데 사용되는 스크립트 언어입니다.
+	- JSP에서의 기본 문법을 보완하는 역활을 합니다.
+
+2. EL 문법
+	- ${expr}
+	- expr은 jsp에서 사용되는 변수가 될 수 있고 수식이 들어갈 수 있습니다.
+
+3. 사용 가능 위치
+	- jstl같은 코드내부에서 사용가능합니다.
+	예1) <jsp:include page="/module/${skin.id}/header.jsp" flush="true" />
+	예2) <b>${sessionScope.member.id}</b> 환영.
+
+4. 사용 가능한 리스트
+   1) JSP의 스코프의 속성을 쉽게 출력 할 수 있는 방법을 제공합니다.
+	- request Scope에서 attribute값을 사용하려면
+	Java
+	String userid = request.getParameter("userid");
+	<%=userid%> 또는 out.println(userid)
+	${requestScope.userid}
+   2) 집합객체 (Collection ... 등)에 속해있는 객체에 대해 쉽게 출력 할 수 있는 방법을 제공합니다.
+	- ${<표현1>.<표현2>} : 표현1이 리스트일 경우 표현2는 리스트 번호가 됩니다.
+   3) 수치 연산, 비교 연산자, 논리 연산자 제공합니다.
+	1 수치 연산
+	( +, -, *, / 또는 div, %또는 mod)
+		- 숫자가 아닌 객체와 수치 연산자를 사용할 경우 객체를 숫자 값으로 변환 후 연산자를 수행: ${"10"+1} -> ${10+1}
+		- 숫자로 변환할 수 없는 객체와 수치 연산자를 함께 사용하면 에러를 발생 : ${"열"+1} ->에러 발생
+		- 수치 연산자에서 사용되는 객체가 null이면 0으로 처리 : ${null + 1} -> ${0 +1}
+	2 비교 연산
+	(==또는 eq, != 또는 ne, < 또는 lt, >또는 gt, <= 또는 le, >= 또는 ge)
+		문자열 비교 : ${str == '값'} str.compareTo('값') ==0 rhk ehddlf
+	3 논리 연산
+	(&&또는 and, || 또는 or, ! 또는 not)
+
+   4) 자바 클래스 메소드 호출 기능을 제공합니다
+	- 클래스에서 getName 함수로 호출 하는 값을 EL로 간편하게 사용할 수 있습니다.
+	- ${student.name} 
+   5) 표현언어만의 기본 객체를 제공합니다.
+	pageScope 	:  page Scope에 접근하기 위한 객체
+	requestScope 	:  request Scope에 접근하기 위한 객체
+	sessopmScope	:  session Scope에 접근하기 위한 객체
+	applicationScope	:  에 접근하기 위한 객체
+	param 		:  파라미터 값을 가져오기 위한 객체
+	header 		:  헤더 값을 가져오기 위한 객체
+	cookie 		:  쿠키 값을 가져오기 위한 객체
+	initParam 	:  JSP 초기 파라미터를 가져오기 위한 객체
+	pageContext 	:  pageContext 객체에 접근하기 위한 객체
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

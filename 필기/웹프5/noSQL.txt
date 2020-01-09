@@ -1,0 +1,172 @@
+NoSQL 
+Not only SQL의 약ㅈ이며, 기존의 RDBMS의 한꼐를 극복하기 위해 만들어진 새로운 형태의 데이터저장소 입니다. 관계형 DB가 아니므로, RDBMS처럼 고정된 스키마 및 JOIN이 존재하지 않습니다.
+
+MongoDB
+
+C++로 작성된 오픈소스문저지향적 데이터베이스이며, 뛰어난 확장성과 성능을 자랑합니다. 또한 현존하는 NoSQL 데이터베이스중 가장 많은 사용률을 기록하고 있습니다.
+
+https://www.mongodb.com/
+
+Collection?
+RDBMS의 table과 비슷한 개념.
+하지만 스키마를 따로 가지고 있지 않음.
+Document들이 동적인 스키마를 가짐.
+
+Document
+Document Oriented DataBase
+RDBMS의 record와 비슷한 개념.
+데이터 구조는 한개이상의 key-value-Pair
+동적인 스키마.
+
+장점
+1. Schema-less 
+2. 각 객체의 구조가 뚜렷하다.
+3. 복잡한 JOIN이 없다.
+4. Deep Query ability (문서지향적 Query Language 를 사용하여 SQL 만큼 강력한 query 성능을 제공
+5. 어플리케이션에서 사용되는 객체를 데이터베이스에 추가 할 때 Conversion / Mapping이 불필요하다.
+
+
+1. MongoDB 설치
+2. 환경설정
+3. 데이터를 저장할 폴더 구성
+예 )
+cmd)
+mongod.exe --dbpath C:\Users\KYS\Documents\webProgramming\db\data
+4. 새로운 cmd창에 mongo
+
+
+
+데이터베이스 리스트 확인
+show dbs
+
+현재 데이터베이스 확인
+db
+
+데이터베이스 생성 및 변경
+use 데이터베이스명
+
+Collection을 생성할때는 db.createCollection(name, [options]) 명령어를 사용합니다. name은 생성하려는 컬렉션의 이름이며 option 은 document타입으로 구성된 해당 컬렉션의 설정값입니다. options 매개변수는 선택적인(optional)매개변수로서 생략해도 되고, 필요에 따라 사용하면 됩니다.
+
+예) db.createCollection("컬렉션이름")
+
+컬렉션 리스트 확인
+show collections
+
+컬렉션 삭제
+db.컬렉션이름.drop()
+
+
+다큐먼트를 컬렉션에 추가
+db.컬렉션명.insert({})
+
+db.member.insert({"idx":1, "userid":"kies", "name":"김윤성"})
+db.member.insert({"idx":10, "userid":"melon6", "name":"명메론6"})
+
+
+
+다큐먼트 리스트를 확인
+db.컬렉션명.find()
+db.컬렉션명.find().pretty()
+
+db.컬렉션명.find({"userid":"apple"}).pretty()
+
+$eq	: equals
+$gt	: greater than
+$gte	: greater than or equals
+$lt	: less than
+$lte	: less than or equals
+$ne	: not equal
+$in	: 주어진 배열 안에 속하는 값
+$nin	: 주어진 배열 안에 속하지 않는 값
+
+ - idx가 1 보다 크고 3보다 자거나 같은 document를 조회
+db.member.find({"idx":{$gt:1, $lte:3}}).pretty()
+
+논리연산자
+$or
+$and
+$not	false 일때 true
+$nor	모든 조건이 false 일때 true
+
+ - userid가 'apple' 이거나 name이 '오렌지'인 document를 조회 
+db.member.find({$or:[{"userid":"apple"},{"name":"명메론"}]}).pretty()
+
+- userid가 'banana' 이고, name이 '박바나'인 document를 조회
+
+db.member.find({$and:[{"userid":"banana"},{"name":"박바나"}]}).pretty()
+
+- idx가 3미만이고, name이 김윤성인 document 조회
+
+db.member.find({$and:[{"idx":{$lt:3}},{"name":"김윤성"}]}).pretty()
+
+
+
+$where 연산자
+javascript expression을 사용 할 수 있습니다.
+
+db.member.find({$where: "this.name.length==3"})
+
+
+{key : value}
+key는 데이터의 field이름이고, value의 값은 1혹은 -1 입니다. 이 값을 1로 설정하면 오름차순으로, -1로 하면 내림차순으로 정렬합니다. 또한 여러 key를 입력할 수 있고 먼저 입력한 key가 우선권을 갖습니다.
+
+db.member.find().sort({"idx":-1})
+
+
+limit(value)출력할 데이터 갯수를 제한할 때 사용됩니다. value 파라미터는 출력 할 갯수 값입니다.
+db.member.find().limit(3)
+
+db.member.find().sort({"idx":-1}).limit(3)
+
+
+skip(value)
+출력 할 데이터의 시작부분을 설정할 때 사용됩니다. value 값 갯수의 데이터를 생략하고 그 다음부터 출력합니다.
+
+db.member.find().skip(2)
+
+
+문제
+document를 10개를 채우고, 3개씩 데이터를 분할하여 아래와 같이 출력
+
+db.member.find().sort({"idx":-1}).skip(0).limit(3)
+db.member.find().sort({"idx":-1}).skip(3).limit(3)
+db.member.find().sort({"idx":-1}).skip(6).limit(3)
+db.member.find().sort({"idx":1}).skip(0).limit(1)
+
+1번째 출력
+idx:10
+...
+idx:9
+..
+idx:8
+...
+
+2번째 출력
+idx:7
+..
+idx:6
+...
+idx:5
+...
+
+3번째 출력
+idx:4
+..
+idx:3
+...
+idx:2
+
+4번재 출력
+idx:1
+
+
+
+
+
+
+
+
+
+
+
+

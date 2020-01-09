@@ -1,0 +1,16 @@
+JSTL(JavaServerPage Standard Tag Library)
+JSP코드를 관리해주며, JSP의 가독성이 좋아집니다.
+
+http://tomcat.apache.org/taglibs/standard/
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri= "http://java.sun.com/jsp/jstl/functions"  %>  
+
+ test : 필수 속성으로 EL 비교식을 넣습니다.
+var : 저장할 변수를 지정합니다.
+scope : 저장할 변수의 저장 scope를 결정합니다.
+		
+	<c:if test="${num eq 1}">
+	<c:if test="${num == '김사과'}">
+	<c:if test="${num eq null}">
+	<c:if test="${not empty num}"> null이 아닌지 체크

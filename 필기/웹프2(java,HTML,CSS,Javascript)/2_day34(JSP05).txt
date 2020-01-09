@@ -1,0 +1,52 @@
+세션 (session) 객체
+쿠키가 웹 브라우저에 사용자의 상태를 유지하기 위한 정보를 저장했다면, 세션은 웹 서버 쪽의 웹 컨테이너에 상태를 유지하기 위한 정보를 저장합니다. 쿠키는 사용자의 상태 유지를 위한 정보를 웹 브라우저에 저장해서 웹 서버가 쿠키 정보를 읽어서 사용합니다. 이것은 웹 브라우저에 저장된 쿠키는 웹 서버에서 열어볼 수 있다는 점에서 보안상 문제가 발생할 수 있습니다. 따라서 사용자의 정보를 유지하기 위해서는 쿠키를 사용하는 것보다 세션을 사용한 웹 브라우저와 웹 서버의 상태 유지가 훨씬 안정적이고, 보안상의 문제도 해결할 수 있습니다.
+
+getAttribute(String name) : 세션 속성명이 name인 속성의 값을 Object 타입으로 리턴한다. 해당 되는 속성명이 없을 경우에는 null 값을 리턴합니다.
+getAttributeNames() : 세션 속성의 이름들을 Enumeration 객체 타입으로 리턴합니다.
+getCreationTime() : 1970년 1월 1일 0시 0초를 기준으로 하여 현재 세션이 생성된 시간까지 경과한 시간을 계산하여 1/1000초 값으로 리턴합니다.
+getId() : 세션에 할당된 고유 식별자를 String 타입을 리턴한다.
+getMaxInactiveInterval() : 현재 생성된 세션을 유지하기 위해 설정된 세션 유지시간을 int형으로 리턴합니다.
+invalidate() : 현재 생성된 세션을 무효화 시킵니다.
+removeAttribute(String name, Object value) : 세션 속성명이 name인 속성에 속성값으로 value를 할당합니다.
+setMaxInactiveInterval(int interval) : 세션을 유지하기 위한 세션 유지시간을 초 단위로 설정합니다.
+
+세션 시간을 설정하는 방법
+1. 특정 경우에 타임아웃 설정
+<% 
+	session.setMaxInactiveInterval(20*60); // 20분(초단위)
+%>
+
+
+2. DD(Deployment Descriptor)에서 전체 세션 타임아웃을 설정
+파일위치 : WEB-INF/web.xml
+<web-app>
+	<session-config>
+		<session-timeout>15</session-timeout> //15분 (분단위)
+	</session-config>
+</web-app>
+
+3. WAS 기본 디폴트 값으로 적용
+tomcat(conf/web.xml) 톰켓은 기본 30분
+
+
+문제 
+
+지난시간 구현했던 쿠키를 이용한 '로그인 프로세스'를 세션 객체를 이용한 '로그인 프로세스' 페이지를 작성
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

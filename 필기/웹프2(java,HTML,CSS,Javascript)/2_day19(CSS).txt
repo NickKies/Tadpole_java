@@ -1,0 +1,25 @@
+img태그의 srcset 속성
+반응형 웹에서 이미지를 지원하기 위해, 미디어쿼리라고 부르는 CSS Media Fule에서 반응형 이미지를 처리하기 위해 뷰포트의 크기부터 사용자 화면의 해상도 등 많은 환경을 고려하고 있습니다. 이때 HTML IMG의 srcset을 통해 이미지의 크기를 설정하는 것만으로 사용자 브라우저에 이미지 처리를 맡길 수 있습니다.
+
+srcset : 브라우저에 사용할 이미지들과 그 이미지들의 원본 크기를 시정합니다.
+
+<img srcset="경로 원본크기" src="경로" alt="대체텍스트">
+
+경로 : 이미지의 위치
+원본크기 : 사용할 이미지의 크기, px이 아닌 w 또는 x단위로 입력
+w : 이미지의 원본 키그(가로 너비)를 의미합니다. (예 400x300px, w 값은 400w입니다.)
+
+<img srcset="imges/pencil-min.jpg 400w, images/pencil-hd.jpg 700w" src="images/pencil.jpg">
+뷰포트 너비가 400px 이하일 때 pencil-min.jpg 가 사용됩니다.
+뷰포트 너비가 401px ~700px 일 때 pencil-hd.jpg가 사용됩니다.
+
+x : 이미지의 비율 의도를 의미합니다.
+<img srcset="images/pencil-min.jpg 1x, images/pencil-hd.jpg 2x" src="images/pencil.jpg" alt="연필">
+
+* w단위를 사용하면 x단위를 사용할 필요 없습니다. 대부분 w단위를 사용합니다.
+
+
+
+<picture>
+뷰포트의 너비에 따라 커지거나 작아지는 하나의 이미지를 사용하는 대신 서로 다른 디스플레이나 기기에서 해당 뷰포트에 알맞게 채워질 수 있도록 여러개의 이미지 중에서 적절한 이미지를 사용할 수 있도록 해줍니다. 이러한 picture 요소는 웹 개발자가 이미지의 리소스를 보다 유연하게 지정할 수 있도록 해주므로, 반응형 디자인(responsive design)에서 주로 사용합니다.
+브라우저는 <source>요소들의 속성값을 각각 확인해 나가며 조건을 만족하는 첫 번쨰 <source>요소를 사용하고, 나머지 <source> 요소들은 무시합니다. 이떄 <img>요소는 <picture> 요소의 자식 요소 중에서 가장 마지막에 위치해야 합니다. 이러한 <img> 요소는 <picture>요소를 지원하지 않는 브라우저를 위한 하위 호환성(backward compatibility>을 위해 사용되거나 명시된 <source>요소가 모두 조건을 만족하지 못 할 경우 사용됩니다.

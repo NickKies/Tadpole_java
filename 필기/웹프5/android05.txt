@@ -1,0 +1,18 @@
+리스트 뷰
+
+Adapter 종류
+1. ArrayAdapter : 배열
+2. SimpleAdapter : xml
+3. CursorAdapter : 데이터베이스, 컨텐트 제공자
+
+ArrayAdapter
+행 레이아웃 리소스 표준
+simple_list_item_1 : 한 개의 텍스트 뷰로 구성
+simple_list_item_2 : 두 개의 텍스트 뷰로 구성
+
+어댑터뷰		어댑터		데이터소스
+(리스트뷰,	(배열어댑터	(배열, DB, xml)
+스피너...)		커서어댑터등..)
+
+어댑터 - > 배열같은 외부 데이터와 어댑터 뷰 사이에 매개 역할
+어댑터뷰 -> 어댑터가 넘겨주는 데이터를 화면상의 위젯에 표시

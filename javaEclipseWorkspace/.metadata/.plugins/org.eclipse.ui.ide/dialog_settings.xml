@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\KYS\Desktop\조준형"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\practice\김윤성_세미프로젝트\semiProject"/>
+		<item value="C:\Users\KYS\Desktop\강민수\movieProject\src\movieProject"/>
+		<item value="C:\Users\KYS\Desktop\강민수"/>
+		<item value="C:\Users\KYS\Documents\DataBase4"/>
+		<item value="C:\Users\KYS\Documents\DataBase3"/>
+		<item value="C:\Users\KYS\Documents\DataBase2"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\practice\세미!\권정현"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\practice\세미!\이상묵\aaa2"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\practice\세미!\권정현\aaa1"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\practice\세미!\SemiProject_이상헌\aaa3"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\JAVA 방특\thisisjava-sourcefile\thisisjava-sourcefile\chap16"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\helloNewDay2_01(Database4)"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\helloNewDay2_01(Database3)"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\helloNewDay2_01(Database2)"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\helloNewDay2_01(Database1)"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\javaEclipseWorkspace\helloNewDay2_01(Database1)"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\javaEclipseWorkspace\helloNewDay2_01(DataBase)"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\웹프정리 전\가져가자\과제\JAVA\과제3\고은진"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\웹프정리 전\가져가자\과제\JAVA\과제4"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\JAVA 방특\thisisjava-sourcefile\thisisjava-sourcefile\chap19"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\javaEclipseWorkspace\helloDay2_04(Chatting)"/>
+		<item value="C:\Users\KYS\Desktop\Network2"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\JAVA 방특\thisisjava-sourcefile\thisisjava-sourcefile\chap06"/>
+		<item value="C:\Users\KYS\Documents\webProgramming\JAVA 방특\thisisjava-sourcefile\thisisjava-sourcefile\chap05"/>
+	</list>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.JavaProjectWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+		</list>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="663"/>
+		<item key="DIALOG_Y_ORIGIN" value="94"/>
+		<item key="DIALOG_WIDTH" value="613"/>
+		<item key="DIALOG_HEIGHT" value="645"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+</section>

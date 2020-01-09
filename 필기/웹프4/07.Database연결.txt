@@ -1,0 +1,59 @@
+DriverManger Class
+
+- JDBC 드라이버를 통해서 커넥션을 만드는 역할을 합니다. 
+- DriverManger는 Class.forName()을 통해서 생성됩니다.
+- DriverManger의 모든 메소드는 static이기 때문에 객체를 생성할 필요가 없습니다.
+- Connection 인터페이스의 객체를 생성하는데 getConnection()를 사용합니다. 
+
+Connection 인터페이스
+ - 커넥션은 Connection 인터페이스가 구현된 클래스의 객체로 생성됩니다. 
+ - SQL문장을 실행시키기 위해서 Connection객체가 필요합니다. 
+ - Connection 객체는 특정 DB와 연결을 나타내고, SQL문장을 실행 시킬 수 있는 Statement 객체를 생성할 수 있습니다.
+
+Statement 인터페이스
+ - Statement는 Connection 객체에 의해 리턴되는 객체에 의해 구현되는 메소드의 집합입니다.
+Statement stmt = connection.createStatment();
+ - Statement 객체의 executeQuery() 메소드를 호출하여 SQL 질의를 실행할 수 있습니다.
+
+PreparedStatement 인터페잇
+ - Connection 객체의 prepareStatement() 사용해서 객체를 생성합니다.
+ - PreparedStatement 객체는 SQL문장을 미리 컴파일하고, 실행시간 동안 인수값을 위한 공간을 확보할 수 있다는 점에서 Statement객체와 다릅니다. 
+
+String sql = "SELECT * FROM MEMBER WHERE id=?";
+
+- 동일한 질의문을 특정 값만 바꿔서 여러번 실행할 때, 많은 데이터를 다루고 질의문을 정리할 필요가 있을때, 인수가 많아서 질의문이 길어질때 사용하면 무척 유용합니다. 
+- Statement 객체의 SQL은 실행할 때 매번 서버에서 실행문을 분석 실행을 반복하는 반면에, PreparedStatement는 한번 분석되면 계속 재사용이 용이하다는 장점을 가지고 있습니다. 
+
+CallableStatement 인터페이스
+ - Connection 객체의 prepareCall() 메소드를 통해 생성됩니다.
+ - 주로 스토어드 프로시저를 사용하기 위해 사용되는 객체입니다. (SP)
+ 
+
+ResultSet 인터페이스
+ - SELECT문을 사용하면 결과물로 ResultSet을 반환합니다.
+ - ResultSet은 SQL질의에 의해 생성된 테이블을 담고 있습니다.
+ - ResultSet은 커서라고 불리는 특정 행에 대한 참조를 조작할 수 있습니다.
+
+ first() : 커서를 첫번째 행으로 옮깁니다.
+ last() : 커서를 마지막 행으로 옮깁니다.
+ next() : 커서를 다음 행으로 옮깁니다.
+ previous() : 커서를 이전 행으로 옮깁니다.
+ - ResultSet은 행을 처리하는데 반복문을 사용하여 next() 메소드가 유효한 행이 있으면 true, 없으면 false를 리턴으로 반복문을 제어할 수 있습니다.
+
+싱글턴 패턴
+전역 변수를 사용하지 않고 객체를 하나만 생성하여, 생성된 객체를 어디에서든지 참조할 수 있도록 만드는 패턴을 의미합니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,143 @@
+데이터 수정(update)
+
+문법
+update 테이블이름 set 필드이름1=값, 필드이름2=값 .. where 필드이름=값
+		    ---------		     ---------------
+		    해당필드를 값으로 변경	     해당필드가 값과 같을 때(조건)
+
+update member set email='banana@banana.com' where user_id='banana'
+update member set point=200 where idx=4
+update member set point=0
+update member set point=point+100
+update member set point=point+50 where point >= 200
+update member set email='' where email is null
+
+
+데이터 삭제(delete)
+
+문법
+delete from 테이블이름 where 필드이름=값
+		     ---------------
+		  해당필드가 값과 같을 때(조건)
+예)
+delete from member where user_id = 'melon'
+delete from member -- 모든 데이터를 삭제
+
+
+* 테이블 삭제
+drop table 테이블명
+예)
+drop table member
+
+
+데이터 검색(select)
+
+문법
+select 필드이름1, 필드이름2, ... from 테이블이름 where 조건 order by 필드이름
+       --------				   ----------	      -------
+	검색하고자 하는 필드이름		해당필드가 값과 같을 때(조건)  ↑
+							정렬하고자 하는 필드이름
+
+select user_id from member
+select name, user_id from member
+select * from member where point >= 100 -- * 모든컬럼
+select * from member where gender='여자' and point>=100
+select * from member order by point desc -- 내림차순 정렬
+select * from member order by point  -- 오름차순 정렬 (asc)
+
+group by 절(그룹)
+select gender from member group by gender
+* 그룹을 맺을 때에는 select 절에 그룹을 맺은 컬럼이나 집계(그룹)함수를 통한 컬럼이 나와야 합니다.
+
+select gender, sum(point) from member group by gender
+
+create table ordertb (
+	idx int auto_increment primary key,
+	user_idx int,
+	ordnum varchar(20) unique not null,
+	product varchar(100) not null,
+	registdate datetime default now(),
+	price int not null,
+	ordstate enum('결제대기중','결제완료','배송준비중','배송중','배송완료'),
+	foreign key(user_idx) references member(idx)
+)
+
+insert into ordertb (user_idx, ordnum, product, price, ordstate) values (1, '2019080215100001', '컴퓨터', 1000000, '결제대기중')
+
+insert into ordertb (user_idx, ordnum, product, price, ordstate) values (2, '2019080215100002', '노트북', 900000, '결제완료')
+
+insert into ordertb (user_idx, ordnum, product, price, ordstate) values (4, '2019080215100003', '가구', 1900000, '배송완료')
+
+insert into ordertb (user_idx, ordnum, product, price, ordstate) values (1, '2019080215100004', '전자레인지', 50000, '배송중')
+
+
+조인 (join)
+
+1. INNER JOIN
+on절의 조건을 만족하는 데이터만 가져옵니다.
+
+select 컬럼이름1, 컬럼이름2 .. from 첫번째테이블이름 inner join 두번째테이블이름 
+on 조건절
+예)
+select user_id, name, ordnum, product, price, ordstate from member inner join ordertb on member.idx = ordertb.user_idx
+
+
+2. LEFT JOIN
+첫번째 테이블을 기준으로, 두번째 테이블을 조합하는 join입니다.
+
+select 컬럼이름1, 컬럼이름2 .. from 첫번째테이블이름 left join 두번째테이블이름 
+on 조건절
+
+예)
+select user_id, name, ordnum, product, price, ordstate from member left join ordertb on member.idx = ordertb.user_idx
+
+
+3. RIGHT JOIN
+두번째 테이블을 기준으로, 첫번째 테이블을 조합하는 join입니다.
+
+select 컬럼이름1, 컬럼이름2 .. from 첫번째테이블이름 right join 두번째테이블이름 
+on 조건절
+
+예)
+select user_id, name, ordnum, product, price, ordstate from member right join ordertb on member.idx = ordertb.user_idx
+
+
+JDBC (Java Database Connectivity)
+자바에서 데이터베이스를 사용하기 위한 절차에 대한 규약. JDBC는 추상화된 인터페이스를 제공하여 각 벤더들(oracle, ms-sql, mysql ..)은 각자의 DBMS에 맞게 구현해 놓은 드라이버를 제공합니다.
+
+자바   ->   JDBC API    ->  JDBC드라이버  ->  데이터베이스
+
+과제 1
+input.txt파일에 아래와 같이 입력한 데이터를 
+
+80
+90
+100
+75
+60
+
+output.txt에 내림차순으로 정렬하여 출력
+
+과제 2
+
+이름, 국어, 영어, 수학의 데이터를 입력받아 저장하고 총점, 평균, 학점을 계산하여 output2.txt에 출력하는 프로그램을 작성해보자. (객체의 배열을 이용)
+
+입력할 학생수를 넣어주세요. 3
+
+1번째
+이름을 입력하세요. 류정원
+국어점수를 입력하세요. 100
+영어점수를 입력하세요. 70
+수학점수를 입력하세요. 85
+
+2번째
+..
+
+3번째
+..
+
+output2.txt
+류정원 100 70 85 255 B학점
+김사과 80	65 75 ...
+...
+...
